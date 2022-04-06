@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragment/commons::head">
+<body>
+<!-Navigation -->
+<div th:replace="fragment/commons::nav"></div>
+
+
+<!- Single Product Details-->
+<div class="small-container single-product">
+    <div th:object="${productDetails}" class="row">
+        <div class="col-2">
+            <img  src="/images/img_4.png" width="400px"  >
+        </div>
+        <div  class="col-2">
+            <p th:text="|Product Category:*{category}|"></p>
+            <h1 th:text="|Product Name:*{name} |"></h1>
+            <h4 th:text="|Product Price: &#36 *{price}|">$1</h4>
+            <form th:action="@{/product/addProduct/{id}(id=${productDetails.id})}" th:method="POST" th:object="${buyProductBindingModel}">
+                <label for="quantity">Product Quantity:</label>
+                <input th:field="*{quantity}" type="number" id="quantity" name="quantity" min="1">
+                <button type="submit" class="buy-btn">Add To Card</button>
+            </form>
+            <h3>Product Description:<i class="fas fa-indent"></i></h3>
+            <p th:text="*{description}">Large, nutty pudding is best mixed with melted salsa verde.</p>
+        </div>
+    </div>
+</div>
+
+<!-Footer-->
+<div th:replace="fragment/commons::footer"></div>
+
+<script src="/js/toggleMenu.js"></script>
+<script src="/js/dropdown.js"></script>
+
+</body>
+</html>

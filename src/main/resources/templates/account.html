@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment/commons::head">
+</head>
+<body>
+<!-Navigation -->
+<div th:replace="fragment/commons::nav"></div>
+
+<!-Account page->
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="/img/ttt.jpg" width="400">
+            </div>
+            <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span th:href="@{/user/account/login}" onclick="log()">Login</span>
+                        <span th:href="@{/user/account/register}" onclick="register()">Register</span>
+                        <hr id="indicator">
+                    </div>
+                    <form id="loginForm" th:action="@{/users/account}" th:method="POST"
+                          th:object="${userLoginBindingModel}">
+                        <input th:field="*{username}" title="text" placeholder="username">
+                        <input th:field="*{password}" title="password" placeholder="password">
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                    <form id="registerForm" th:action="@{/users/account}" th:method="POST"
+                          th:object="${userRegisterBindingModel}">
+                        <input th:field="*{username}" title="text" placeholder="username">
+                        <input th:field="*{fullName}" title="text" placeholder="fullName">
+                        <input th:field="*{email}" title="text" placeholder="email">
+                        <input th:field="*{address}" title="text" placeholder="address">
+                        <input th:field="*{password}" title="password" type="password" placeholder="password">
+                        <button type="submit" class="btn">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-Footer-->
+<div th:replace="fragment/commons::footer"></div>
+
+<script src="/static/js/toggleMenu.js">
+</script>
+<script src="/js/loginAndRegister.js">
+</script>
+
+</body>
+</html>
